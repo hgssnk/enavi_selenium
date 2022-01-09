@@ -12,6 +12,7 @@ class ENavi:
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         self.driver = webdriver.Remote(command_executor='http://localhost:4444/wd/hub', options=options)
+        self.driver.implicitly_wait(10)
 
     # ログイン画面
     def enavi_login(self, URL, USER_ID, USER_PASSWORD):
