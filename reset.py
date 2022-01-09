@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import traceback
 import ENavi
 
 # 定数
@@ -32,6 +33,7 @@ def main():
     except Exception as e:
         print("こけた")
         print(e)
+        print(traceback.format_exc())
     # 終了処理
     finally:
         enavi.enavi_end()
