@@ -35,15 +35,25 @@ class ENavi:
         Select(self.driver.find_element_by_id("CmbBeginTimeMin")).select_by_index(int(START_TIME.split(":")[1]))
         Select(self.driver.find_element_by_id("CmbEndTimeHour")).select_by_index(int(END_TIME.split(":")[0]))
         Select(self.driver.find_element_by_id("CmbEndTimeMin")).select_by_index(int(END_TIME.split(":")[1]))
+        self.driver.find_element_by_id("TextComment").clear()
         self.driver.find_element_by_id("TextComment").send_keys(COMMENT)
         self.driver.find_element_by_id("BtnOkSigndayedit").click()
 
     # 承認依頼確認画面
-    def enavi_confirm(self):
+    def enavi_confirm(self, LOG_FILE_PATH):
         self.driver.find_element_by_id("BtnOk").click()
         Alert(self.driver).accept()
-        self.driver.save_screenshot(str(datetime.datetime.now().strftime('%Y%m%d_%H%M')) + ".png")
+        self.driver.save_screenshot(LOG_FILE_PATH + str(datetime.datetime.now().strftime('%Y%m%d_%H%M')) + ".png")
 
     # 終了処理
     def enavi_end(self):
         self.driver.quit()
+
+    # リセット用
+    def enavi_reset(self, WORK_STATUS, LOG_FILE_PATH):
+        self.driver.find_element_by_id("BtnCancelSign").click()
+        Alert(self.driver).accept()
+        Select(self.driver.find_element_by_id("CmbStatus")).select_by_index(WORK_STATUS)
+        self.driver.find_element_by_id("TextComment").clear()
+        self.driver.find_element_by_id("BtnOkdayedit").click()
+        self.driver.save_screenshot(LOG_FILE_PATH + str(datetime.datetime.now().strftime('%Y%m%d_%H%M')) + ".png")
