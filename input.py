@@ -33,7 +33,7 @@ def main():
         # 承認依頼画面
         enavi.enavi_confirm(LOG_FILE_PATH)
         print("承認依頼画面\t：OK")
-        print("TOTAL\t：正常終了")
+        print("TOTAL\t\t：正常終了")
     # 例外処理
     except Exception as e:
         print("こけた")
