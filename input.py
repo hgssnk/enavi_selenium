@@ -2,17 +2,18 @@
 
 import traceback
 import ENavi
+import datetime
 
 # 定数
-URL = "https://hoge"
-USER_ID = "9999"
-USER_PASSWORD = "9999"
-DATE = "01/09"
-START_TIME = "08:00"
-END_TIME = "18:30"
+URL = "https://hogehoge"
+USER_ID = "hgoehgo"
+USER_PASSWORD = "hogehoge"
+DATE = datetime.datetime.now().strftime("%m/%d")
+LOG_FILE_PATH = "./log/"
+START_TIME = "09:00"
+END_TIME = "18:00"
 WORK_STATUS = "0"
 COMMENT = "在宅勤務"
-LOG_FILE_PATH = "./"
 
 def main():
     try:
@@ -32,7 +33,7 @@ def main():
         enavi.enavi_input(WORK_STATUS, START_TIME, END_TIME, COMMENT)
         print("勤怠入力画面\t：OK")
         # 承認依頼画面
-        enavi.enavi_confirm(LOG_FILE_PATH)
+        enavi.enavi_confirm()
         print("承認依頼画面\t：OK")
         print("TOTAL\t\t：正常終了")
     # 例外処理
@@ -42,7 +43,7 @@ def main():
         print(traceback.format_exc())
     # 終了処理
     finally:
-        enavi.enavi_end()
+        enavi.enavi_end(LOG_FILE_PATH)
 
 if __name__ == "__main__":
     main()
